@@ -17,17 +17,17 @@ AWS Command Line Interface (CLI) must be isntalled and configured with at least 
 ## Get the script onto your host through one of the following options:
 
 ### Clone this repo using Git
-```
+`
 git clone https://github.com/kintyre/quail-hollow-2
-```
+`
 ### Download the a release
 Coming soon
 
 ## Documentation
 Make the file executable
-```
+`
 sudo chmod +x setup.sh
-````
+`
 
 ### Options
 **--help, -h**
@@ -53,15 +53,17 @@ AWS region to use with CLI commands;  will attempt to use region from profile if
 
 The feature/command representing a particular best practice to implement.  Defaults to all.
 
+* all - runs all the commands below
 * iamAlias - attempts to set the account's IAM alias
 
 ### Examples
-```
+`
 ./setup.sh --alias "AcmeStaging" --region us-west-1 
-```
-```
+`
+
+`
 ./setup.sh --profile "AcmeTest"
-```
+`
 
 # Contributing
 
@@ -80,11 +82,16 @@ You should have received a copy of the GNU General Public License along with thi
 ## Contact Information
 
 https://www.kintyre.co
+
 hello@kitnyre.co
+
 (888)636-0010
-2817 Kennedy Road
-Wilmington, DE 19810
-United States of America
+
+>2817 Kennedy Road
+
+>Wilmington, DE 19810
+
+>United States of America
 
 ## Branching Strategy
 https://nvie.com/posts/a-successful-git-branching-model/
