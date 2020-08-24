@@ -2,7 +2,7 @@
 
 #options
 optionShowHelp=0
-optionAll=1
+#optionAll=1  # unused - remove, or future use?
 
 #global variables
 profile=""
@@ -43,7 +43,7 @@ test_awsCliConfig()
 {
     # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
     echo "Testing AWS CLI configuration..."
-    aws configure list-profiles
+    aws configure list
 }
 
 show_options()
@@ -72,9 +72,9 @@ set_accountAlias()
 show_settings()
 {
     echo "Settings..."
-    echo "  AWS CLI Base Command: "     $awsCliBaseCmd
-    echo "  Account #: "                $accountNumber
-    echo "  Alias: "                    $accountAlias
+    echo "  AWS CLI Base Command: "     "${awsCliBaseCmd}"
+    echo "  Account #: "                "${accountNumber}"
+    echo "  Alias: "                    "${accountAlias}"
 }
 
 config_accountAlias()
@@ -82,7 +82,7 @@ config_accountAlias()
     aliasFound="false"
     for aa in $(${awsCliBaseCmd} iam list-account-aliases --query 'AccountAliases[*]' --output text)
     do
-        if [ "${aa}" == "${ACCOUNTALIAS}" ] ; then
+        if [ "${aa}" == "${accountAlias}" ] ; then
             aliasFound="true"
         fi
     done
