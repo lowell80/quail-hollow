@@ -41,7 +41,7 @@ set_awsCliBaseCmd()
 
 test_alsCliConfig()
 {
-    # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provied, then exit
+    # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
     echo "Testing AWS CLI configuration..."
     aws configure list-profiles
 }
