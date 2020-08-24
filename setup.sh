@@ -39,7 +39,7 @@ set_awsCliBaseCmd()
     fi
 }
 
-test_alsCliConfig()
+test_awsCliConfig()
 {
     # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
     echo "Testing AWS CLI configuration..."
@@ -132,7 +132,7 @@ set_awsCliBaseCmd
 
 show_options
 
-test_alsCliConfig
+test_awsCliConfig
 
 set_accountNumber
 
