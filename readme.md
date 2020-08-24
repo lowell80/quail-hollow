@@ -21,7 +21,7 @@ AWS Command Line Interface (CLI) must be isntalled and configured with at least 
 git clone https://github.com/kintyre/quail-hollow-2
 `
 ### Download the a release
-Coming soon
+https://github.com/Kintyre/quail-hollow-2/releases
 
 ## Documentation
 Make the file executable
