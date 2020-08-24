@@ -117,6 +117,7 @@ while [ "$1" != "" ]; do
                                 command=$1
                                 ;;                                
         -h | --help )           optionShowHelp=1
+                                break
                                 ;;
     esac
     shift
