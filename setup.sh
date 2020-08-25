@@ -111,8 +111,25 @@ make_bucket()
         echo "S3 bucket "$1" already exists."
     else
         echo "Attempting to create S3 bucket "$1
-        ${awsCliBaseCmd} s3 mb "s3://$1"
+        ${awsCliBaseCmd} s3 mb "s3://${1}"
     fi    
+}
+
+create_vpc()
+{
+    echo "creating VPC....."
+    bucketName=${accountAlias}-cloudformation-templates 
+    make_bucket $bucketName
+
+    # Copy the VPC template up to the working S3 bucket.  Cloud formation needs it in S3.
+    ${awsCliBaseCmd} s3 cp vpc.json \
+        "s3://${bucketName}/vpc.template.json"
+
+    #Apply the VPC cloud formation template to the account.
+    ${awsCliBaseCmd} cloudformation create-stack \
+        --stack-name "vpc" \
+        --template-url "https://${bucketName}.s3.amazonaws.com/vpc.template.json"
+
 }
 
 # main
@@ -159,10 +176,16 @@ show_settings
 
 if [ "${command}" == "all" ] ; then
     config_accountAlias
+    create_vpc
     exit 1
 fi
 
 if [ "${command}" == "iamAlias" ] ; then
     config_accountAlias
+    exit 1
+fi
+
+if [ "${command}" == "vpc" ] ; then
+    create_vpc
     exit 1
 fi

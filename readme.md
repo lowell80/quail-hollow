@@ -54,7 +54,7 @@ Provide text after parameter option name seperated by space
 
 `--alias, -a`
 
-The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.
+The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.  The prefix must comply with S3 naming convention requirements (see <https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html>)
 
 `--profile, -p`
 
@@ -71,6 +71,8 @@ The feature/command representing a particular best practice to implement.  Defau
 - **all** - runs all the commands below
 
 - **iamAlias** - attempts to set the account's IAM alias
+
+- **vpc** - creates a VPC using a CloudFormation template (uploaded to an S3 bucket) [review CFT code... https://docs.aws.amazon.com/quickstart/latest/vpc/welcome.html; https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/VPC/VPC_With_Managed_NAT_And_Private_Subnet.yaml]
 
 ### Examples
 
