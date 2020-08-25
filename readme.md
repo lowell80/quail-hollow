@@ -52,34 +52,34 @@ Shows helpul usage information
 
 Provide text after parameter option name seperated by space
 
-`**--alias, -a**`
+`--alias, -a`
 
 The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.
 
-`**--profile, -p**`
+`--profile, -p`
 
 The AWS CLI configured profile to use;  will use the default/active profile if not specified
 
-`**--region, -r**`
+`--region, -r`
 
 AWS region to use with CLI commands;  will attempt to use region from profile if not specified
 
-`**--command, -c**`
+`--command, -c`
 
 The feature/command representing a particular best practice to implement.  Defaults to all.
 
-- all - runs all the commands below
+- **all** - runs all the commands below
 
-- iamAlias - attempts to set the account's IAM alias
+- **iamAlias** - attempts to set the account's IAM alias
 
 ### Examples
 
 `
-./setup.sh --alias "AcmeStaging" --region us-west-1
+./setup.sh --alias "AcmeStaging" --region us-west-1 --command iamAlias
 `
 
 `
-./setup.sh --profile "AcmeTest"
+./setup.sh --profile "AcmeTest" 
 `
 
 ## Contribution
