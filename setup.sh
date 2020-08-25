@@ -98,6 +98,23 @@ config_accountAlias()
     fi
 }
 
+make_bucket()
+{
+    for i in $(${awsCliBaseCmd} s3api list-buckets --query "Buckets[].Name" --output text)
+    do
+        if [ "${i}" == "$1" ] ; then
+            bucketExists = 1
+            break
+        fi
+    done
+    if [ "${bucketExists}" == 1 ] ; then
+        echo "S3 bucket "$1" already exists."
+    else
+        echo "Attempting to create S3 bucket "$1
+        ${awsCliBaseCmd} s3 mb "s3://$1"
+    fi    
+}
+
 # main
 show_overview
 
