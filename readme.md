@@ -2,72 +2,89 @@
 
 Script for setting up many AWS account best practices as authored by Kintyre.
 
-# Target Audience
+## Target Audience
 
 Any IT professional with basic Linux CLI experience with administrative access to an AWS account.
 
-# Prerequisites
+## Table of Contents
+
+- [Prerequisites](#Prerequisites)
+- [Usage](#Usage)
+  - [Options](#Options)
+  - [Examples](#Examples)
+- [Contribution](#Contribution)
+  - [License](#License)
+  - [Contact](#Contact)
+
+## Prerequisites
 
 This script must be run from a Linux compatbile host or emulator.
 
-AWS Command Line Interface (CLI) must be isntalled and configured with at least one profile.  See https://aws.amazon.com/cli/ for more information.
+AWS Command Line Interface (CLI) must be isntalled and configured with at least one profile.  See <https://aws.amazon.com/cli/> for more information.
 
-# Using
+## Usage
 
-## Get the script onto your host through one of the following options:
+Get the script onto your host through one of the following options
 
 ### Clone this repo using Git
+
 `
 git clone https://github.com/kintyre/quail-hollow-2
 `
-### Download the a release
-https://github.com/Kintyre/quail-hollow-2/releases
 
-## Documentation
+### Download the a release
+
+<https://github.com/Kintyre/quail-hollow-2/releases>
+
+### Change mode
+
 Make the file executable
 `
 sudo chmod +x setup.sh
 `
 
 ### Options
+
 **--help, -h**
 Shows helpul usage information
 
-### Parameters
+#### Parameters
 
 Provide text after parameter option name seperated by space
 
-**--alias, -a**
+`**--alias, -a**`
 
-The alias is used to set the IAM account alias (see https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number
+The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.
 
-**--profile, -p**
+`**--profile, -p**`
 
 The AWS CLI configured profile to use;  will use the default/active profile if not specified
 
-**--region, -r**
+`**--region, -r**`
 
 AWS region to use with CLI commands;  will attempt to use region from profile if not specified
 
-**--command, -c**
+`**--command, -c**`
 
 The feature/command representing a particular best practice to implement.  Defaults to all.
 
-* all - runs all the commands below
-* iamAlias - attempts to set the account's IAM alias
+- all - runs all the commands below
+
+- iamAlias - attempts to set the account's IAM alias
 
 ### Examples
+
 `
-./setup.sh --alias "AcmeStaging" --region us-west-1 
+./setup.sh --alias "AcmeStaging" --region us-west-1
 `
 
 `
 ./setup.sh --profile "AcmeTest"
 `
 
-# Contributing
+## Contribution
 
-## License
+### License
 
 This script and associated files enable setting up many AWS account best practices as authored by Kintyre.
 
@@ -79,19 +96,18 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-## Contact Information
+### Contact
 
-https://www.kintyre.co
+<https://www.kintyre.co>
 
-hello@kitnyre.co
+hello@kintyre.co
 
 (888)636-0010
 
->2817 Kennedy Road
-
->Wilmington, DE 19810
-
->United States of America
+>2817 Kennedy Road  
+Wilmington, DE 19810  
+United States of America
 
 ## Branching Strategy
-https://nvie.com/posts/a-successful-git-branching-model/
+
+<https://nvie.com/posts/a-successful-git-branching-model/>
