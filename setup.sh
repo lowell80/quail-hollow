@@ -246,6 +246,13 @@ enable_config()
 
 }
 
+create_billingbucket()
+{
+    bucketName=${accountAlias}-billing 
+    make_bucket $bucketName
+    config_bucketpolicy "billing" $bucketName
+}
+ 
 
 # main
 show_overview
@@ -314,5 +321,10 @@ fi
 
 if [ "${command}" == "Config" ] ; then
     enable_config
+    exit 1
+fi
+
+if [ "${command}" == "Billing" ] ; then
+    create_billingbucket
     exit 1
 fi
