@@ -12,6 +12,8 @@ accountNumber=""
 accountAlias=""
 command="all"
 
+tempDir=$(mktemp -d)
+
 #functions
 show_overview()
 {
@@ -103,7 +105,7 @@ make_bucket()
     for i in $(${awsCliBaseCmd} s3api list-buckets --query "Buckets[].Name" --output text)
     do
         if [ "${i}" == "$1" ] ; then
-            bucketExists = 1
+            bucketExists=1
             break
         fi
     done
@@ -130,6 +132,49 @@ create_vpc()
         --stack-name "vpc" \
         --template-url "https://${bucketName}.s3.amazonaws.com/vpc.template.json"
 
+}
+
+config_bucketpolicy()
+{
+    # Generate policy file from template
+    templateFile="${tempDir}/$1.json"
+    #shellcheck disable=SC2002
+    cat "$1BucketPolicyTemplate.json" | \
+        sed "s/ACCOUNTALIAS/${accountAlias}/g" | \
+        sed "s/ACCOUNTNUMBER/${accountNumber}/g" | \
+        sed "s/DATE/$(date +'%Y%m%d')/" > "${templateFile}"
+
+    # Apply policy to bucket
+    echo "Applying bucket policy to $2"
+    ${awsCliBaseCmd} s3api put-bucket-policy \
+            --bucket "$2" \
+            --policy "file://${templateFile}"
+    rm -f "${templateFile}"
+}
+
+enable_cloudtrail()
+{
+    echo "Enabling CloudTrail....."
+    bucketName=${accountAlias}-cloudtrail 
+    make_bucket $bucketName
+    config_bucketpolicy "cloudtrail" $bucketName
+    #Does the trail already exist
+    trailName=$(${awsCliBaseCmd} cloudtrail get-trail \
+        --name "${accountAlias}-cloudtrail" \
+        --query Trail.Name --output text 2> /dev/null)
+
+    if [ "${trailName}" == "${accountAlias}-cloudtrail" ] ; then
+        echo "Trail ${accountAlias}-cloudtrail already exists and will not be re-created."
+    else
+        echo "Creating trail ${accountAlias}-cloudtrail"
+        ${awsCliBaseCmd} cloudtrail create-trail \
+            --name "${accountAlias}-cloudtrail" \
+            --s3-bucket-name "${bucketName}" \
+            --is-multi-region-trail
+        ${awsCliBaseCmd} cloudtrail start-logging --name "${accountAlias}-cloudtrail"
+    fi
+    echo "Finished CloudTrail setup!"
+    echo -e
 }
 
 # main
@@ -176,6 +221,7 @@ show_settings
 
 if [ "${command}" == "all" ] ; then
     config_accountAlias
+    enable_cloudtrail
     create_vpc
     exit 1
 fi
@@ -187,5 +233,10 @@ fi
 
 if [ "${command}" == "vpc" ] ; then
     create_vpc
+    exit 1
+fi
+
+if [ "${command}" == "CloudTrail" ] ; then
+    enable_cloudtrail
     exit 1
 fi
