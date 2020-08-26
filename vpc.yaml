@@ -402,9 +402,6 @@ Resources:
           - Fn::Sub: ${AWS::Region}.compute.internal
       DomainNameServers:
         - AmazonProvidedDNS
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 9a82ff7b-365b-4a15-86d7-36c4648577bf
   VPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -418,9 +415,6 @@ Resources:
         - Key: Name
           Value:
             Ref: AWS::StackName
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 4d989ed9-727b-4b67-8927-d6f6becca3b8
   VPCDHCPOptionsAssociation:
     Type: AWS::EC2::VPCDHCPOptionsAssociation
     Properties:
@@ -428,9 +422,6 @@ Resources:
         Ref: VPC
       DhcpOptionsId:
         Ref: DHCPOptions
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 623cb26e-e329-4876-8ee5-0e4e093a00c4
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -438,9 +429,6 @@ Resources:
         - Key: Name
           Value:
             Ref: AWS::StackName
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 55c3661a-91fa-4cde-a157-13ee3ec3f4cb
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
@@ -448,9 +436,6 @@ Resources:
         Ref: VPC
       InternetGatewayId:
         Ref: InternetGateway
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 1774a0ea-a2a2-4ffb-a32c-2ad12ddf2653
   PrivateSubnet1A:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::Subnet
@@ -511,9 +496,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetATag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 23fa2261-a43a-43ad-bd4b-778bc6ee84e7
   PrivateSubnet1B:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::Subnet
@@ -574,9 +556,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetBTag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 28ac4382-ec0a-4ccb-af10-c3418c1635cc
   PrivateSubnet2A:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::Subnet
@@ -637,9 +616,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetATag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 8a35cba1-0d45-446e-acbc-6c3a209e5e7d
   PrivateSubnet2B:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::Subnet
@@ -700,9 +676,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetBTag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 58ca21c6-2a3a-4bec-a33b-621378e18453
   PrivateSubnet3A:
     Condition: PrivateSubnets&3AZCondition
     Type: AWS::EC2::Subnet
@@ -763,9 +736,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetATag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 4d03b7ac-af48-43cd-9e01-969c781adbbc
   PrivateSubnet3B:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::Subnet
@@ -826,9 +796,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetBTag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 718ab380-f7d6-4a18-83ec-a47583c93c47
   PrivateSubnet4A:
     Condition: PrivateSubnets&4AZCondition
     Type: AWS::EC2::Subnet
@@ -889,9 +856,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetATag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: b929da74-9521-4374-a050-16bb8d7cac21
   PrivateSubnet4B:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::Subnet
@@ -952,9 +916,6 @@ Resources:
                       - '='
                       - Ref: PrivateSubnetBTag3
             - Ref: AWS::NoValue
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 1672925e-480c-4f48-baff-6fa80ce78f82
   PublicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
@@ -1015,9 +976,6 @@ Resources:
                       - Ref: PublicSubnetTag3
             - Ref: AWS::NoValue
       MapPublicIpOnLaunch: true
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: dd2ec467-71b4-46a9-bbef-1462dfead14b
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -1078,9 +1036,6 @@ Resources:
                       - Ref: PublicSubnetTag3
             - Ref: AWS::NoValue
       MapPublicIpOnLaunch: true
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 3cbd7daa-60c0-4f31-b173-bb6099e58c86
   PublicSubnet3:
     Condition: 3AZCondition
     Type: AWS::EC2::Subnet
@@ -1142,9 +1097,6 @@ Resources:
                       - Ref: PublicSubnetTag3
             - Ref: AWS::NoValue
       MapPublicIpOnLaunch: true
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 4a5f46fc-f745-41bf-9a07-2abd56ad12bd
   PublicSubnet4:
     Condition: 4AZCondition
     Type: AWS::EC2::Subnet
@@ -1206,9 +1158,6 @@ Resources:
                       - Ref: PublicSubnetTag3
             - Ref: AWS::NoValue
       MapPublicIpOnLaunch: true
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 962dab8b-43ce-4b42-bed7-0c5cb0ecdcda
   PrivateSubnet1ARouteTable:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::RouteTable
@@ -1220,9 +1169,6 @@ Resources:
           Value: Private subnet 1A
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 4bc13631-733b-40ac-a0dd-acb38e9b2ccb
   PrivateSubnet1ARoute:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::Route
@@ -1232,9 +1178,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway1
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: d8f475de-46d7-410b-a152-2e36b2acafc2
   PrivateSubnet1ARouteTableAssociation:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1243,9 +1186,6 @@ Resources:
         Ref: PrivateSubnet1A
       RouteTableId:
         Ref: PrivateSubnet1ARouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: c3a6d400-91cb-4609-9cbb-7ab6c85932b7
   PrivateSubnet2ARouteTable:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::RouteTable
@@ -1257,9 +1197,6 @@ Resources:
           Value: Private subnet 2A
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 470cc089-cbe7-4815-a2eb-07d51ce4c771
   PrivateSubnet2ARoute:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::Route
@@ -1269,9 +1206,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway2
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 3af6fe4c-d5a3-4d14-96ba-21e77522ffae
   PrivateSubnet2ARouteTableAssociation:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1280,9 +1214,6 @@ Resources:
         Ref: PrivateSubnet2A
       RouteTableId:
         Ref: PrivateSubnet2ARouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: caa20d56-782d-4f90-b9bb-8e28c72a30a6
   PrivateSubnet3ARouteTable:
     Condition: PrivateSubnets&3AZCondition
     Type: AWS::EC2::RouteTable
@@ -1294,9 +1225,6 @@ Resources:
           Value: Private subnet 3A
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 60d1843e-c47b-4afc-b71c-1e70646e4919
   PrivateSubnet3ARoute:
     Condition: PrivateSubnets&3AZCondition
     Type: AWS::EC2::Route
@@ -1306,9 +1234,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway3
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: ce4369eb-b300-4a2c-a07a-37881c1e125e
   PrivateSubnet3ARouteTableAssociation:
     Condition: PrivateSubnets&3AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1317,9 +1242,6 @@ Resources:
         Ref: PrivateSubnet3A
       RouteTableId:
         Ref: PrivateSubnet3ARouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: fa949b00-6310-4826-8f08-ef6d2fb83bba
   PrivateSubnet4ARouteTable:
     Condition: PrivateSubnets&4AZCondition
     Type: AWS::EC2::RouteTable
@@ -1331,9 +1253,6 @@ Resources:
           Value: Private subnet 4A
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 2990ee62-dc07-48d1-81cd-88fa11e77142
   PrivateSubnet4ARoute:
     Condition: PrivateSubnets&4AZCondition
     Type: AWS::EC2::Route
@@ -1343,9 +1262,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway4
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 380bcbe8-4e78-4713-b002-d8cab968c7cb
   PrivateSubnet4ARouteTableAssociation:
     Condition: PrivateSubnets&4AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1354,9 +1270,6 @@ Resources:
         Ref: PrivateSubnet4A
       RouteTableId:
         Ref: PrivateSubnet4ARouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 3d47f068-bf05-4cf0-95f0-3d1990874a24
   PrivateSubnet1BRouteTable:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::RouteTable
@@ -1368,9 +1281,6 @@ Resources:
           Value: Private subnet 1B
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 1a69a113-8372-4ce0-85c1-da63272a8dfd
   PrivateSubnet1BRoute:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::Route
@@ -1380,9 +1290,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway1
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: de0a8ab4-64a6-4a64-ba9a-8780dfa832dd
   PrivateSubnet1BRouteTableAssociation:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1391,9 +1298,6 @@ Resources:
         Ref: PrivateSubnet1B
       RouteTableId:
         Ref: PrivateSubnet1BRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: d6590e7e-d2cc-4830-bede-6ed7ccbe15af
   PrivateSubnet1BNetworkAcl:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAcl
@@ -1405,9 +1309,6 @@ Resources:
           Value: NACL Protected subnet 1
         - Key: Network
           Value: NACL Protected
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: ad0dfa27-233f-45c7-a42e-64115ea1e8d1
   PrivateSubnet1BNetworkAclEntryInbound:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1419,9 +1320,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 307c9ccb-2a7d-4ea0-bc76-d567d036e9f9
   PrivateSubnet1BNetworkAclEntryOutbound:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1433,9 +1331,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: e8ddb712-442b-40b1-8506-ba8891183e0c
   PrivateSubnet1BNetworkAclAssociation:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::SubnetNetworkAclAssociation
@@ -1444,9 +1339,6 @@ Resources:
         Ref: PrivateSubnet1B
       NetworkAclId:
         Ref: PrivateSubnet1BNetworkAcl
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 255117a9-f839-4bd4-9685-d21635cc3807
   PrivateSubnet2BRouteTable:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::RouteTable
@@ -1458,9 +1350,6 @@ Resources:
           Value: Private subnet 2B
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 27f18d41-9e35-42b3-b551-a2e87b5fb5a8
   PrivateSubnet2BRoute:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::Route
@@ -1470,9 +1359,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway2
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 750c96bd-b5cd-44b4-8bb1-9035f405477f
   PrivateSubnet2BRouteTableAssociation:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1481,9 +1367,6 @@ Resources:
         Ref: PrivateSubnet2B
       RouteTableId:
         Ref: PrivateSubnet2BRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: d867af60-a6b9-4900-b7bb-b131aff0f9d6
   PrivateSubnet2BNetworkAcl:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAcl
@@ -1495,9 +1378,6 @@ Resources:
           Value: NACL Protected subnet 2
         - Key: Network
           Value: NACL Protected
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 922e5a39-898b-42ee-892b-37b3800845a6
   PrivateSubnet2BNetworkAclEntryInbound:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1509,9 +1389,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 9830ae0a-b051-493a-8534-9631771ac4ff
   PrivateSubnet2BNetworkAclEntryOutbound:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1523,9 +1400,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 6f211d69-c89f-4a96-a461-ee48de56a155
   PrivateSubnet2BNetworkAclAssociation:
     Condition: AdditionalPrivateSubnetsCondition
     Type: AWS::EC2::SubnetNetworkAclAssociation
@@ -1534,9 +1408,6 @@ Resources:
         Ref: PrivateSubnet2B
       NetworkAclId:
         Ref: PrivateSubnet2BNetworkAcl
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: a98ce16c-a8e6-46fd-910a-1c888574f7ab
   PrivateSubnet3BRouteTable:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::RouteTable
@@ -1548,9 +1419,6 @@ Resources:
           Value: Private subnet 3B
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: db5cc0a3-bbd3-4758-b61e-8f2faeb9a340
   PrivateSubnet3BRoute:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::Route
@@ -1560,9 +1428,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway3
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 37cac808-8498-41ee-b6fa-f700db8ddf1f
   PrivateSubnet3BRouteTableAssociation:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1571,9 +1436,6 @@ Resources:
         Ref: PrivateSubnet3B
       RouteTableId:
         Ref: PrivateSubnet3BRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 7edef1aa-39f9-46ac-a08e-277b54b43146
   PrivateSubnet3BNetworkAcl:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::NetworkAcl
@@ -1585,9 +1447,6 @@ Resources:
           Value: NACL Protected subnet 3
         - Key: Network
           Value: NACL Protected
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 49aee797-c09d-4cf9-a41b-0f64ba9a6f09
   PrivateSubnet3BNetworkAclEntryInbound:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1599,9 +1458,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: d898db20-6dc4-40ac-8e50-693ce3c9f8c6
   PrivateSubnet3BNetworkAclEntryOutbound:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1613,9 +1469,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 235efd1b-509b-43d6-b4a4-f6b4b90522be
   PrivateSubnet3BNetworkAclAssociation:
     Condition: AdditionalPrivateSubnets&3AZCondition
     Type: AWS::EC2::SubnetNetworkAclAssociation
@@ -1624,9 +1477,6 @@ Resources:
         Ref: PrivateSubnet3B
       NetworkAclId:
         Ref: PrivateSubnet3BNetworkAcl
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: a8c1f5fe-9c46-4e45-b6d3-3718e5b7e78e
   PrivateSubnet4BRouteTable:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::RouteTable
@@ -1638,9 +1488,6 @@ Resources:
           Value: Private subnet 4B
         - Key: Network
           Value: Private
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 91e00520-e35e-48d4-8454-3c3a1e5b9c32
   PrivateSubnet4BRoute:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::Route
@@ -1650,9 +1497,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       NatGatewayId:
         Ref: NATGateway4
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 602bb253-6292-4ff9-af1d-d43eed186f3c
   PrivateSubnet4BRouteTableAssociation:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1661,9 +1505,6 @@ Resources:
         Ref: PrivateSubnet4B
       RouteTableId:
         Ref: PrivateSubnet4BRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: c6d93c0a-26b4-4512-b830-e165341303d4
   PrivateSubnet4BNetworkAcl:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::NetworkAcl
@@ -1675,9 +1516,6 @@ Resources:
           Value: NACL Protected subnet 4
         - Key: Network
           Value: NACL Protected
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: c38e6ce5-b623-44d2-aa9e-3b4de154ff82
   PrivateSubnet4BNetworkAclEntryInbound:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1689,9 +1527,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: fa0a7ff7-5617-4568-88ea-cda1e4c163e4
   PrivateSubnet4BNetworkAclEntryOutbound:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::NetworkAclEntry
@@ -1703,9 +1538,6 @@ Resources:
       Protocol: -1
       RuleAction: allow
       RuleNumber: 100
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 8249eeac-6532-4980-8a63-e64d3c824b7f
   PrivateSubnet4BNetworkAclAssociation:
     Condition: AdditionalPrivateSubnets&4AZCondition
     Type: AWS::EC2::SubnetNetworkAclAssociation
@@ -1714,9 +1546,6 @@ Resources:
         Ref: PrivateSubnet4B
       NetworkAclId:
         Ref: PrivateSubnet4BNetworkAcl
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 40bbaa0a-25fb-4746-90ed-0dc3e644f172
   PublicSubnetRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -1727,9 +1556,6 @@ Resources:
           Value: Public Subnets
         - Key: Network
           Value: Public
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: c8c08b5f-276a-4d60-8e0f-70da4198ce14
   PublicSubnetRoute:
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::Route
@@ -1739,9 +1565,6 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId:
         Ref: InternetGateway
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 0ed6aae3-4aea-4bef-b43b-148ec0bc2a74
   PublicSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -1749,9 +1572,6 @@ Resources:
         Ref: PublicSubnet1
       RouteTableId:
         Ref: PublicSubnetRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 1a8c865a-dd0d-4fc1-a863-ccb4ef5339ca
   PublicSubnet2RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -1759,9 +1579,6 @@ Resources:
         Ref: PublicSubnet2
       RouteTableId:
         Ref: PublicSubnetRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 910db642-b438-4ddf-8974-4daa48d5a08e
   PublicSubnet3RouteTableAssociation:
     Condition: 3AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1770,9 +1587,6 @@ Resources:
         Ref: PublicSubnet3
       RouteTableId:
         Ref: PublicSubnetRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: d4569728-4ea8-4f95-89d0-2aedf789bb19
   PublicSubnet4RouteTableAssociation:
     Condition: 4AZCondition
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -1781,45 +1595,30 @@ Resources:
         Ref: PublicSubnet4
       RouteTableId:
         Ref: PublicSubnetRouteTable
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: dd52938f-8366-40d0-ba08-dc194ed146e9
   NAT1EIP:
     Condition: PrivateSubnetsCondition
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 542fca2a-e014-4d9e-800b-c3a3588f7dcc
   NAT2EIP:
     Condition: PrivateSubnetsCondition
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 19991f65-3701-4c9b-9ecf-19a6355f9d36
   NAT3EIP:
     Condition: PrivateSubnets&3AZCondition
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 5684f501-c474-463d-9f90-d59d083f4ec8
   NAT4EIP:
     Condition: PrivateSubnets&4AZCondition
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 5c051a6c-d39c-48af-980f-a9431ec549ad
   NATGateway1:
     Condition: PrivateSubnetsCondition
     DependsOn: VPCGatewayAttachment
@@ -1831,9 +1630,6 @@ Resources:
           - AllocationId
       SubnetId:
         Ref: PublicSubnet1
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 82e2cd09-ee44-4a4d-9afc-f09c732503b2
   NATGateway2:
     Condition: PrivateSubnetsCondition
     DependsOn: VPCGatewayAttachment
@@ -1845,9 +1641,6 @@ Resources:
           - AllocationId
       SubnetId:
         Ref: PublicSubnet2
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 4ab4dad4-7599-427d-b09d-c59edeb96d5a
   NATGateway3:
     Condition: PrivateSubnets&3AZCondition
     DependsOn: VPCGatewayAttachment
@@ -1859,9 +1652,6 @@ Resources:
           - AllocationId
       SubnetId:
         Ref: PublicSubnet3
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 095f2c00-caa1-4e2f-936c-71d57042a973
   NATGateway4:
     Condition: PrivateSubnets&4AZCondition
     DependsOn: VPCGatewayAttachment
@@ -1873,9 +1663,6 @@ Resources:
           - AllocationId
       SubnetId:
         Ref: PublicSubnet4
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 957169a6-2ce0-4e49-bc19-a3bc3a08fd97
   S3VPCEndpoint:
     Condition: PrivateSubnetsCondition
     Type: AWS::EC2::VPCEndpoint
@@ -1918,9 +1705,6 @@ Resources:
         Fn::Sub: com.amazonaws.${AWS::Region}.s3
       VpcId:
         Ref: VPC
-    Metadata:
-      AWS::CloudFormation::Designer:
-        id: 6554a3b0-cd0a-4124-b575-ae88c68b401f
 Outputs:
   NAT1EIP:
     Condition: PrivateSubnetsCondition
