@@ -112,6 +112,10 @@ hello@kintyre.co
 Wilmington, DE 19810  
 United States of America
 
-## Branching Strategy
+### Branching Strategy
 
 <https://nvie.com/posts/a-successful-git-branching-model/>
+
+### Testing
+
+To help with testing, consider:  https://dev.to/michrodz/cloud-reset-reset-a-cloud-aws-gcp-azure-account-to-default-deleting-all-unneded-resources-updated-ggd, https://github.com/rebuy-de/aws-nuke
