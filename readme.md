@@ -74,6 +74,8 @@ The feature/command representing a particular best practice to implement.  Defau
 
 - **vpc** - creates a VPC using a CloudFormation template (uploaded to an S3 bucket) [review CFT code... https://docs.aws.amazon.com/quickstart/latest/vpc/welcome.html; https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/VPC/VPC_With_Managed_NAT_And_Private_Subnet.yaml]
 
+- **CloudTrail** - creates an S3 bucket, with properly configured policy, and turns on CloudTrail to output to S3
+
 ### Examples
 
 `
