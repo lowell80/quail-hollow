@@ -2,7 +2,6 @@
 
 #options
 optionShowHelp=0
-#optionAll=1  # unused - remove, or future use?
 
 #global variables
 profile=""
@@ -46,6 +45,11 @@ test_awsCliConfig()
     # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
     echo "Testing AWS CLI configuration..."
     aws configure list
+    # get the region of the profile passed, or the default profile, if no region specified
+    # if still no region, default to us-east-1
+    if [ "${region}" == "" ] ; then
+        region="us-east-1"
+    fi
 }
 
 show_options()
@@ -140,8 +144,8 @@ config_bucketpolicy()
     templateFile="${tempDir}/$1.json"
     #shellcheck disable=SC2002
     cat "$1BucketPolicyTemplate.json" | \
-        sed "s/ACCOUNTALIAS/${accountAlias}/g" | \
         sed "s/ACCOUNTNUMBER/${accountNumber}/g" | \
+        sed "s/ACCOUNTALIAS/${accountAlias}/g" | \
         sed "s/DATE/$(date +'%Y%m%d')/" > "${templateFile}"
 
     # Apply policy to bucket
@@ -176,6 +180,72 @@ enable_cloudtrail()
     echo "Finished CloudTrail setup!"
     echo -e
 }
+
+enable_config()
+{
+    echo "Enabling Config....."
+    bucketName=${accountAlias}-config 
+    make_bucket $bucketName
+    config_bucketpolicy "config" $bucketName
+
+    #Does the config role already exist
+    existingRoleName=$(${awsCliBaseCmd} iam get-role \
+        --role-name "${accountAlias}-config-role" \
+        --query Role.RoleName \
+        --output text 2> /dev/null)
+
+   if [ "${existingRoleName}" == "${accountAlias}-config-role" ] ; then
+        echo "Role ${accountAlias}-config-role already exists and will not be created again."
+    else
+        echo "Creating config role ${accountAlias}-config-role."
+
+        templateFile=${tempDir}/configRoleTrustPolicy.json
+        # shellcheck disable=SC2002
+        cat configRoleTrustPolicyTemplate.json | \
+            sed "s/DATE/$(date +'%Y%m%d')/" > "${templateFile}"
+
+        # Creates config role
+        ${awsCliBaseCmd} iam create-role \
+            --role-name "${accountAlias}-config-role" \
+            --assume-role-policy-document "file://${templateFile}"
+        ${awsCliBaseCmd} iam attach-role-policy \
+            --role-name "${accountAlias}-config-role" \
+            --policy-arn arn:aws:iam::aws:policy/service-role/AWSConfigRole
+        rm -f "${templateFile}"
+    fi
+
+    # Create SNS service for Config Service
+    topicFound="false"
+    topicName=""
+    for i in $(${awsCliBaseCmd} sns list-topics --query Topics[*].TopicArn --output text)
+    do
+        searchArn="arn:aws:sns:${region}:${accountNumber}:${accountAlias}-config-topic"
+        if [ "${i}" == "${searchArn}" ] ; then
+            topicFound="true"
+            topicName="${i}"
+        fi
+    done
+
+    if [ ${topicFound} == "true" ] ; then
+        echo "SNS Topic ${topicName} was found and will not be re-created."
+    else
+        echo "Creating SNS Topic"
+        ${awsCliBaseCmd} sns create-topic --name "${accountAlias}-config-topic"
+
+        # Set Config Service to deliver config informtion to S3 and SNS under the given IAM role
+        # May have to run this again if fails on first attempt
+        #sleep 10
+        ${awsCliBaseCmd} configservice subscribe \
+            --s3-bucket "${accountAlias}-config" \
+            --sns-topic "arn:aws:sns:${region}:${accountNumber}:${accountAlias}-config-topic" \
+            --iam-role "arn:aws:iam::${accountNumber}:role/${accountAlias}-config-role"
+    fi
+
+    echo "End Config setup"
+    echo -e
+
+}
+
 
 # main
 show_overview
@@ -223,6 +293,7 @@ if [ "${command}" == "all" ] ; then
     config_accountAlias
     enable_cloudtrail
     create_vpc
+    enable_config
     exit 1
 fi
 
@@ -238,5 +309,10 @@ fi
 
 if [ "${command}" == "CloudTrail" ] ; then
     enable_cloudtrail
+    exit 1
+fi
+
+if [ "${command}" == "Config" ] ; then
+    enable_config
     exit 1
 fi
