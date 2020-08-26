@@ -124,13 +124,13 @@ create_vpc()
     make_bucket $bucketName
 
     # Copy the VPC template up to the working S3 bucket.  Cloud formation needs it in S3.
-    ${awsCliBaseCmd} s3 cp vpc.json \
-        "s3://${bucketName}/vpc.template.json"
+    ${awsCliBaseCmd} s3 cp vpc.yaml \
+        "s3://${bucketName}/vpc.template.yaml"
 
     #Apply the VPC cloud formation template to the account.
     ${awsCliBaseCmd} cloudformation create-stack \
-        --stack-name "vpc" \
-        --template-url "https://${bucketName}.s3.amazonaws.com/vpc.template.json"
+        --stack-name "vpc-${accountAlias}" \
+        --template-url "https://${bucketName}.s3.amazonaws.com/vpc.template.yaml"
 
 }
 
