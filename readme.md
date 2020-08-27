@@ -28,9 +28,7 @@ Get the script onto your host through one of the following options
 
 ### Clone this repo using Git
 
-`
-git clone https://github.com/kintyre/quail-hollow-2
-`
+`git clone https://github.com/kintyre/quail-hollow-2`
 
 ### Download the a release
 
@@ -39,9 +37,8 @@ git clone https://github.com/kintyre/quail-hollow-2
 ### Change mode
 
 Make the file executable
-`
-sudo chmod +x setup.sh
-`
+
+`sudo chmod +x setup.sh`
 
 ### Options
 
@@ -76,15 +73,15 @@ The feature/command representing a particular best practice to implement.  Defau
 
 - **CloudTrail** - creates an S3 bucket, with properly configured policy, and turns on CloudTrail to output to S3
 
+- **Config** - creates S3 bucket, with properly configured policy, and SNS topic, to record Config results in S3
+
+- **Billing** - creates S3 bucket, with properly configured policy, to output cost and usage reports to S3 for further analysis;  see https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html for next steps
+
 ### Examples
 
-`
-./setup.sh --alias "AcmeStaging" --region us-west-1 --command iamAlias
-`
+`./setup.sh --alias "AcmeStaging" --region us-west-1 --command iamAlias`
 
-`
-./setup.sh --profile "AcmeTest" 
-`
+`./setup.sh --profile "AcmeTest" `
 
 ## Contribution
 
