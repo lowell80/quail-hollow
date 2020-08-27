@@ -45,12 +45,17 @@ test_awsCliConfig()
 {
     # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
     echo "Testing AWS CLI configuration..."
-    aws configure list
-    # get the region of the profile passed, or the default profile, if no region specified
-    # if still no region, default to us-east-1
-    if [ "${region}" == "" ] ; then
-        region="us-east-1"
+    if aws configure list | awk '{print $2}' | grep -q not
+    then
+        echo "No profile, credentials and/or region provided"
+        exit 1
     fi
+
+    ## get the region of the profile passed, or the default profile, if no region specified
+    ## if still no region, default to us-east-1
+    #if [ "${region}" == "" ] ; then
+    #    region="us-east-1"
+    #fi
 }
 
 show_options()
