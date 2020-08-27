@@ -43,11 +43,17 @@ set_awsCliBaseCmd()
 
 test_awsCliConfig()
 {
-    # needs to be improved.. if no profiles OR if no region on default profile or the profile requested, and no region parameter provided, then exit
-    echo "Testing AWS CLI configuration..."
-    if aws configure list | awk '{print $2}' | grep -q not
+    echo "Checking AWS CLI credentials"
+    if ! aws sts get-caller-identity > /dev/null 2>&1
     then
-        echo "No profile, credentials and/or region provided"
+        echo "Unable to locate credentials. You can configure credentials by running \"aws configure\""
+        exit 1
+    fi
+
+    echo "Checking region config setting"
+    if aws configure list | grep "^ *region" | grep -q "not set"
+    then
+        echo "Unable to locate region. You can configure region by running \"aws configure\""
         exit 1
     fi
 
