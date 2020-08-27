@@ -16,11 +16,12 @@ tempDir=$(mktemp -d)
 #functions
 show_overview()
 {
-    echo "    Quail Hollow AWS Best Practices Setup Script"
-    echo "  Copyright (C) 2020  Kintyre Solutions, Inc.  https://www.kintyre.co"
-    echo "This code comes with ABSOLUTELY NO WARRANTY; for details see LICENSE file."
-    echo "This is free software, and you are welcome to redistribute it"
-    echo " under certain conditions of the license details in the LICENSE file."
+    echo "                  Quail Hollow AWS Best Practices Setup Script"
+    echo "      Copyright (C) 2020  Kintyre Solutions, Inc.  https://www.kintyre.co"
+    echo "   This code comes with ABSOLUTELY NO WARRANTY; for details see LICENSE file."
+    echo "         This is free software, and you are welcome to redistribute it"
+    echo "      under certain conditions of the license details in the LICENSE file."
+    echo
 }
 
 show_help()
