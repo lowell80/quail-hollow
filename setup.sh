@@ -50,7 +50,7 @@ test_awsCliConfig()
         exit 1
     fi
 
-    profileRegion=""
+    profileRegion="us-east-1"
     echo "Checking region config setting"
     if aws configure list | grep "^ *region" | grep -q "not set"
     then
@@ -60,9 +60,9 @@ test_awsCliConfig()
 
     ## get the region of the profile passed, or the default profile, if no region specified
     ## if still no region, default to us-east-1
-    #if [ "${region}" == "" ] ; then
-    #    region=$profileRegion
-    #fi
+    if [ "${region}" == "" ] ; then
+        region=$profileRegion
+    fi
 }
 
 show_options()
