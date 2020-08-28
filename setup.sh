@@ -30,21 +30,27 @@ show_help()
    echo "See readme.md for more information"
 }
 
-set_awsCliBaseCmd()
-{
-    awsCliBaseCmd="aws "
-    if [ "${profile}" != "" ] ; then
-        awsCliBaseCmd=$awsCliBaseCmd" --profile="$profile
-    fi
-    if [ "${region}" != "" ] ; then
-        awsCliBaseCmd=$awsCliBaseCmd" --region="$region
-    fi
-}
+#set_awsCliBaseCmd()
+#{
+#    awsCliBaseCmd="aws"
+#    if [ "${profile}" != "" ] ; then
+#        awsCliBaseCmd="${awsCliBaseCmd} --profile=${profile}"
+#    fi
+#    if [ "${region}" != "" ] ; then
+#        awsCliBaseCmd="${awsCliBaseCmd} --region=${region}"
+#    fi
+#    echo "debug: $awsCliBaseCmd"
+#}
 
 test_awsCliConfig()
 {
+    awsCliBaseCmd="aws"
+    if [ "${profile}" != "" ] ; then
+        awsCliBaseCmd="${awsCliBaseCmd} --profile=${profile}"
+    fi
+
     echo "Checking AWS CLI credentials"
-    if ! aws sts get-caller-identity > /dev/null 2>&1
+    if ! ${awsCliBaseCmd} sts get-caller-identity > /dev/null 2>&1
     then
         echo "Unable to locate credentials. You can configure credentials by running \"aws configure\""
         exit 1
@@ -52,26 +58,21 @@ test_awsCliConfig()
 
     profileRegion="us-east-1"
     echo "Checking region config setting"
-    if aws configure list | grep "^ *region" | grep -q "not set"
+    if ${awsCliBaseCmd} configure list | grep "^ *region" | grep -q "not set"
     then
-        echo "Unable to locate region. You can configure region by running \"aws configure\""
-        exit 1
+        echo "Unable to locate region in aws config, falling back to default \"${profileRegion}\""
+        awsCliBaseCmd="${awsCliBaseCmd} --region=${profileRegion}"
     fi
 
-    ## get the region of the profile passed, or the default profile, if no region specified
-    ## if still no region, default to us-east-1
-    if [ "${region}" == "" ] ; then
-        region=$profileRegion
-    fi
 }
 
 show_options()
 {
     echo "Options..."
-    echo "  Profile: "      $profile
-    echo "  Region: "       $region
-    echo "  Alias: "        $accountAlias
-    echo "  Command: "      $command
+    echo "  Profile: ${profile}"
+    echo "  Region:  ${region}"
+    echo "  Alias:   ${accountAlias}"
+    echo "  Command: ${command}"
 }
 
 set_accountNumber()
@@ -91,9 +92,9 @@ set_accountAlias()
 show_settings()
 {
     echo "Settings..."
-    echo "  AWS CLI Base Command: "     "${awsCliBaseCmd}"
-    echo "  Account #: "                "${accountNumber}"
-    echo "  Alias: "                    "${accountAlias}"
+    echo "  AWS CLI Base Command: ${awsCliBaseCmd}"
+    echo "  Account #:            ${accountNumber}"
+    echo "  Alias:                ${accountAlias}"
 }
 
 config_accountAlias()
@@ -284,7 +285,7 @@ while [ "$1" != "" ]; do
                                 ;;
         -c | --command )        shift
                                 command=$1
-                                ;;                                
+                                ;;
         -h | --help )           optionShowHelp=1
                                 break
                                 ;;
@@ -297,7 +298,7 @@ if [ "${optionShowHelp}" == 1 ] ; then
      exit 1
 fi
 
-set_awsCliBaseCmd
+#set_awsCliBaseCmd
 
 show_options
 
@@ -308,7 +309,7 @@ set_accountNumber
 set_accountAlias
 
 show_settings
-
+exit
 if [ "${command}" == "all" ] ; then
     config_accountAlias
     enable_cloudtrail
