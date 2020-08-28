@@ -132,7 +132,7 @@ make_bucket()
     else
         echo "Attempting to create S3 bucket ${1}"
         ${awsCliBaseCmd} s3 mb "s3://${1}"
-    fi    
+    fi
 }
 
 create_vpc()
@@ -266,7 +266,7 @@ create_billingbucket()
     make_bucket "${bucketName}"
     config_bucketpolicy "billing" "${bucketName}"
 }
- 
+
 
 # main
 show_overview
@@ -309,7 +309,7 @@ set_accountNumber
 set_accountAlias
 
 show_settings
-exit
+
 if [ "${command}" == "all" ] ; then
     config_accountAlias
     enable_cloudtrail
