@@ -28,9 +28,7 @@ Get the script onto your host through one of the following options
 
 ### Clone this repo using Git
 
-`
-git clone https://github.com/kintyre/quail-hollow-2
-`
+`git clone https://github.com/kintyre/quail-hollow-2`
 
 ### Download the a release
 
@@ -39,9 +37,8 @@ git clone https://github.com/kintyre/quail-hollow-2
 ### Change mode
 
 Make the file executable
-`
-sudo chmod +x setup.sh
-`
+
+`sudo chmod +x setup.sh`
 
 ### Options
 
@@ -54,7 +51,7 @@ Provide text after parameter option name seperated by space
 
 `--alias, -a`
 
-The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.
+The alias is used to set the IAM account alias (see <https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#AboutAccountAlias>) and/or prefix various globally unique AWS resource names and/or identifiers such as S3 bucket names;  if an alias is not specified, it will default to the AWS account number.  The prefix must comply with S3 naming convention requirements (see <https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html>)
 
 `--profile, -p`
 
@@ -72,15 +69,19 @@ The feature/command representing a particular best practice to implement.  Defau
 
 - **iamAlias** - attempts to set the account's IAM alias
 
+- **vpc** - creates a VPC using the included CloudFormation template (uploaded to an S3 bucket);  vpc.yaml based on: https://docs.aws.amazon.com/quickstart/latest/vpc/welcome.html
+
+- **CloudTrail** - creates an S3 bucket, with properly configured policy, and turns on CloudTrail to output to S3
+
+- **Config** - creates S3 bucket, with properly configured policy, and SNS topic, to record Config results in S3
+
+- **Billing** - creates S3 bucket, with properly configured policy, to output cost and usage reports to S3 for further analysis;  see https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html for next steps
+
 ### Examples
 
-`
-./setup.sh --alias "AcmeStaging" --region us-west-1 --command iamAlias
-`
+`./setup.sh --alias "AcmeStaging" --region us-west-1 --command iamAlias`
 
-`
-./setup.sh --profile "AcmeTest" 
-`
+`./setup.sh --profile "AcmeTest" `
 
 ## Contribution
 
@@ -108,6 +109,10 @@ hello@kintyre.co
 Wilmington, DE 19810  
 United States of America
 
-## Branching Strategy
+### Branching Strategy
 
 <https://nvie.com/posts/a-successful-git-branching-model/>
+
+### Testing
+
+To help with testing, consider:  https://dev.to/michrodz/cloud-reset-reset-a-cloud-aws-gcp-azure-account-to-default-deleting-all-unneded-resources-updated-ggd, https://github.com/rebuy-de/aws-nuke
