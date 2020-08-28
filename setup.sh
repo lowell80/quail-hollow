@@ -271,6 +271,10 @@ create_billingbucket()
 # main
 show_overview
 
+# TODO:  Fix parsing of command line arguments.  For example
+#        this works:        "./setup.sh --command vpc"
+#        but this does not: "./setup.sh --command=vpc"
+
 # read command line options
 while [ "$1" != "" ]; do
     case $1 in
