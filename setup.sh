@@ -30,18 +30,6 @@ show_help()
    echo "See readme.md for more information"
 }
 
-#set_awsCliBaseCmd()
-#{
-#    awsCliBaseCmd="aws"
-#    if [ "${profile}" != "" ] ; then
-#        awsCliBaseCmd="${awsCliBaseCmd} --profile=${profile}"
-#    fi
-#    if [ "${region}" != "" ] ; then
-#        awsCliBaseCmd="${awsCliBaseCmd} --region=${region}"
-#    fi
-#    echo "debug: $awsCliBaseCmd"
-#}
-
 test_awsCliConfig()
 {
     awsCliBaseCmd="aws"
@@ -267,8 +255,20 @@ create_billingbucket()
     config_bucketpolicy "billing" "${bucketName}"
 }
 
+cleanup()
+{
+    if [ -d "${tempDir}" ]
+    then
+        rm -rf "${tempDir}"
+    fi
+}
 
 # main
+
+# Clean up temp files when script exits, whether by successful completion
+# exit signal or intgerruption.
+trap cleanup EXIT
+
 show_overview
 
 # TODO:  Fix parsing of command line arguments.  For example
@@ -301,8 +301,6 @@ if [ "${optionShowHelp}" == 1 ] ; then
      show_help
      exit 1
 fi
-
-#set_awsCliBaseCmd
 
 show_options
 
