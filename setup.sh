@@ -30,18 +30,6 @@ show_help()
    echo "See readme.md for more information"
 }
 
-#set_awsCliBaseCmd()
-#{
-#    awsCliBaseCmd="aws"
-#    if [ "${profile}" != "" ] ; then
-#        awsCliBaseCmd="${awsCliBaseCmd} --profile=${profile}"
-#    fi
-#    if [ "${region}" != "" ] ; then
-#        awsCliBaseCmd="${awsCliBaseCmd} --region=${region}"
-#    fi
-#    echo "debug: $awsCliBaseCmd"
-#}
-
 test_awsCliConfig()
 {
     awsCliBaseCmd="aws"
@@ -313,8 +301,6 @@ if [ "${optionShowHelp}" == 1 ] ; then
      show_help
      exit 1
 fi
-
-#set_awsCliBaseCmd
 
 show_options
 
