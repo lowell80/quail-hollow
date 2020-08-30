@@ -267,8 +267,20 @@ create_billingbucket()
     config_bucketpolicy "billing" "${bucketName}"
 }
 
+cleanup()
+{
+    if [ -d "${tempDir}" ]
+    then
+        rm -rf "${tempDir}"
+    fi
+}
 
 # main
+
+# Clean up temp files when script exits, whether by successful completion
+# exit signal or intgerruption.
+trap cleanup EXIT
+
 show_overview
 
 # TODO:  Fix parsing of command line arguments.  For example
