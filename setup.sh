@@ -257,7 +257,7 @@ create_billingbucket()
 
 cleanup()
 {
-    if [ -d "${tempDir}" ]
+    if [ -n "${tempDir}" ] && [ -d "${tempDir}" ]
     then
         rm -rf "${tempDir}"
     fi
