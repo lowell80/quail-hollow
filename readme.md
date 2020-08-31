@@ -28,11 +28,11 @@ Get the script onto your host through one of the following options
 
 ### Clone this repo using Git
 
-`git clone https://github.com/kintyre/quail-hollow-2`
+`git clone https://github.com/kintyre/quail-hollow
 
-### Download the a release
+### Download and unzip a release
 
-<https://github.com/Kintyre/quail-hollow-2/releases>
+<https://github.com/Kintyre/quail-hollow/releases/latest>
 
 ### Change mode
 
