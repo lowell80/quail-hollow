@@ -115,7 +115,7 @@ make_bucket()
             break
         fi
     done
-    if [ "${bucketExists}" == 1 ] ; then
+    if [ "${bucketExists}" -eq 1 ] ; then
         echo "S3 bucket ${1} already exists."
     else
         echo "Attempting to create S3 bucket ${1}"
@@ -297,7 +297,7 @@ while [ "$1" != "" ]; do
     shift
 done
 
-if [ "${optionShowHelp}" == 1 ] ; then
+if [ "${optionShowHelp}" -eq 1 ] ; then
      show_help
      exit 1
 fi
